@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HomeStyle 2026</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div id="cartSidebar" class="cart-sidebar">
+    <div class="cart-sidebar-header">
+        <h2>Your Cart</h2>
+        <button onclick="closeCart()" class="close-btn">&times;</button>
+    </div>
+    <div id="cartItems" class="cart-items-container"></div>
+    <div class="cart-sidebar-footer">
+        <h3>Total: $<span id="cartTotal">0</span></h3>
+        <button onclick="checkout()" class="checkout-sidebar-btn">Checkout</button>
+    </div>
+</div>
+
+<div id="loginModal" class="modal-overlay" onclick="closeModal('loginModal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+        <h2>Account Login</h2>
+        <form onsubmit="handleLoginSubmit(event)">
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="modal-submit-btn">Login with Email</button>
+        </form>
+        <div class="modal-divider"><span>OR</span></div>
+        <button class="social-login-btn google-btn" onclick="alert('Connecting via Google...')">
+            <i class="fab fa-google"></i> Continue with Google
+        </button>
+        <button class="social-login-btn phone-btn" onclick="let num = prompt('Enter your phone number:'); if(num) alert('Verification code sent to ' + num)">
+            <i class="fas fa-phone"></i> Continue with Phone Number
+        </button>
+    </div>
+</div>
+
+<div id="contactModal" class="modal-overlay" onclick="closeModal('contactModal')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal('contactModal')">&times;</button>
+        <h2>Contact Us</h2>
+        <form onsubmit="handleContactSubmit(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <textarea placeholder="Your Message..." rows="4" required></textarea>
+            <button type="submit" class="modal-submit-btn">Send Message</button>
+        </form>
+    </div>
+</div>
+
+<div id="home-view">
+    <header class="navbar">
+
+    <div class="logo">
+    HomeStyle
+    </div>
+
+    <nav id="navMenu">
+
+    <a href="#" onclick="togglePage('home', event)">Home</a>
+    <a href="#" onclick="togglePage('furniture', event)">Furniture</a>
+    <a href="#" onclick="openCart(event)">
+    Cart <span id="cart-count">0</span>
+    </a>
+    <a href="#" onclick="togglePage('wishlist', event)">Wishlist</a>
+    <a href="#" onclick="alert('Orders section coming soon!')">Orders</a>
+    <a href="#" onclick="openModal('loginModal', event)">Login</a>
+    <a href="#" onclick="openModal('contactModal', event)">Contact</a>
+
+    </nav>
+
+    <div class="icons">
+
+    <i class="fas fa-moon" id="themeBtn"></i>
+
+    <i class="fas fa-bars" id="menuBtn"></i>
+
+    </div>
+
+    </header>
+
+    <section class="hero">
+
+    <div class="overlay">
+
+    <h1>
+    Luxury Home Furniture
+    </h1>
+
+    <p>
+    Modern sofas, bedrooms, kitchens & decorations
+    </p>
+
+    <a href="#" onclick="togglePage('furniture', event)" class="btn">
+    Shop Now
+    </a>
+
+    </div>
+
+    </section>
+
+    <section class="services">
+
+    <div class="service">
+
+    <i class="fas fa-truck"></i>
+
+    <h2>Fast Delivery</h2>
+
+    </div>
+
+    <div class="service">
+
+    <i class="fas fa-credit-card"></i>
+
+    <h2>Secure Payment</h2>
+
+    </div>
+
+    <div class="service">
+
+    <i class="fas fa-headset"></i>
+
+    <h2>24/7 Support</h2>
+
+    </div>
+
+    </section>
+
+    <section class="categories">
+
+    <a href="#" onclick="togglePage('furniture', event)" class="category">
+
+    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc">
+
+    <h2>Sofas</h2>
+
+    </a>
+
+    <a href="#" onclick="togglePage('furniture', event)" class="category">
+
+    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+
+    <h2>Bedrooms</h2>
+
+    </a>
+
+    <a href="#" onclick="togglePage('furniture', event)" class="category">
+
+    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858">
+
+    <h2>Kitchens</h2>
+
+    </a>
+
+    <a href="#" onclick="togglePage('furniture', event)" class="category">
+
+    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e">
+
+    <h2>Decorations</h2>
+
+    </a>
+
+    </section>
+
+    <footer>
+
+    <p>
+    © 2026 HomeStyle
+    </p>
+
+    </footer>
+</div>
+
+<div id="furniture-view" style="display: none;">
+    <header class="navbar">
+
+    <div class="logo">
+    HomeStyle
+    </div>
+
+    <nav>
+
+    <a href="#" onclick="togglePage('home', event)">Home</a>
+    <a href="#" onclick="togglePage('furniture', event)">Furniture</a>
+    <a href="#" onclick="openCart(event)">
+    Cart <span id="cart-count-2">0</span>
+    </a>
+    <a href="#" onclick="togglePage('wishlist', event)">Wishlist</a>
+    <a href="#" onclick="openModal('loginModal', event)">Login</a>
+    <a href="#" onclick="openModal('contactModal', event)">Contact</a>
+
+    </nav>
+
+    </header>
+
+    <section class="search-box">
+
+    <input
+    type="text"
+    placeholder="Search furniture..."
+    id="searchInput"
+    >
+
+    </section>
+
+    <section class="products-grid">
+
+    <div class="product">
+
+    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc">
+
+    <h2>Luxury Sofa</h2>
+
+    <p>$799</p>
+
+    <div class="buttons">
+
+    <button onclick="addToCart('Luxury Sofa',799)">
+    Add To Cart
+    </button>
+
+    <button onclick="addToWishlist('Luxury Sofa')">
+    ❤ Wishlist
+    </button>
+
+    </div>
+
+    </div>
+
+    <div class="product">
+
+    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85">
+
+    <h2>Modern Bedroom</h2>
+
+    <p>$1299</p>
+
+    <div class="buttons">
+
+    <button onclick="addToCart('Modern Bedroom',1299)">
+    Add To Cart
+    </button>
+
+    <button onclick="addToWishlist('Modern Bedroom')">
+    ❤ Wishlist
+    </button>
+
+    </div>
+
+    </div>
+
+    <div class="product">
+
+    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858">
+
+    <h2>Kitchen Table</h2>
+
+    <p>$499</p>
+
+    <div class="buttons">
+
+    <button onclick="addToCart('Kitchen Table',499)">
+    Add To Cart
+    </button>
+
+    <button onclick="addToWishlist('Kitchen Table')">
+    ❤ Wishlist
+    </button>
+
+    </div>
+
+    </div>
+
+    <div class="product">
+
+    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e">
+
+    <h2>Decoration Set</h2>
+
+    <p>$299</p>
+
+    <div class="buttons">
+
+    <button onclick="addToCart('Decoration Set',299)">
+    Add To Cart
+    </button>
+
+    <button onclick="addToWishlist('Decoration Set')">
+    ❤ Wishlist
+    </button>
+
+    </div>
+
+    </div>
+
+    </section>
+</div>
+
+<div id="wishlist-view" style="display: none;">
+    <header class="navbar">
+        <div class="logo">HomeStyle</div>
+        <nav>
+            <a href="#" onclick="togglePage('home', event)">Home</a>
+            <a href="#" onclick="togglePage('furniture', event)">Furniture</a>
+            <a href="#" onclick="openCart(event)">Cart <span id="cart-count-3">0</span></a>
+            <a href="#" onclick="togglePage('wishlist', event)">Wishlist</a>
+            <a href="#" onclick="openModal('loginModal', event)">Login</a>
+            <a href="#" onclick="openModal('contactModal', event)">Contact</a>
+        </nav>
+    </header>
+
+    <h1 style="text-align:center; padding:40px 20px 10px 20px;">Your Saved Wishlist</h1>
+    <section id="wishlistGrid" class="products-grid">
+        </section>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
